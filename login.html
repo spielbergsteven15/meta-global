@@ -77,7 +77,23 @@ function resetPassword() {
 
   auth.sendPasswordResetEmail(email)
     .then(() => {
+      alert("Password reset email sent. Please check your inbox.");function resetPassword() {
+  const email = document.getElementById("email").value;
+  if (!email) {
+    alert("Please enter your email address.");
+    return;
+  }
+
+  auth.sendPasswordResetEmail(email)
+    .then(() => {
       alert("Password reset email sent. Please check your inbox.");
+    })
+    .catch((error) => {
+      console.error("Reset error:", error.message);
+      alert("Error: " + error.message);
+    });
+}
+
     })
     .catch((error) => {
       console.error("Reset error:", error.message);
